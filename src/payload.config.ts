@@ -1,3 +1,4 @@
+import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
@@ -15,7 +16,7 @@ export default buildConfig({
 	admin: {
 		user: Users.slug,
 	},
-	collections: [Users, Posts, Media, Pages],
+	collections: [Users, Posts, Media, Pages, Categories],
 	editor: lexicalEditor({}),
 	secret: process.env.PAYLOAD_SECRET || '',
 	typescript: {

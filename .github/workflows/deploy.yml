@@ -1,0 +1,63 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo (optional; deploy builds on server)
+        uses: actions/checkout@v4
+
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_CLIENT_SECRET }}
+          tags: tag:ci
+
+      - name: Debug Tailscale identity (runner)
+        run: |
+          set -eux
+          tailscale status
+          tailscale status --json | jq '.Self.DNSName, .Self.Tags'
+
+      - name: Verify Tailscale connectivity
+        run: |
+          set -eux
+          tailscale status
+          tailscale ping -c 3 ddd
+          nc -vz ddd 22
+
+      - name: Deploy over Tailscale SSH and build on server
+        run: |
+          set -euxo pipefail
+
+          tailscale ssh sebastian@sebweb <<'EOF'
+          set -euxo pipefail
+
+          APP_PATH="$HOME/app"
+          REPO_URL="git@github.com:cskiva/sebweb2026.git"
+          BRANCH="main"
+
+          mkdir -p "$APP_PATH"
+          cd "$APP_PATH"
+
+          if [ ! -d ".git" ]; then
+            echo "No .git found — cloning repo..."
+            git clone "$REPO_URL" .
+          fi
+
+          git remote set-url origin "$REPO_URL" || true
+          git fetch --prune origin
+          git checkout -f "$BRANCH"
+          git reset --hard "origin/$BRANCH"
+
+          docker compose pull || true
+          docker compose build --pull app
+          docker compose up -d
+          EOF

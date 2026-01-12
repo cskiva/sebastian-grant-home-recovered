@@ -11,6 +11,9 @@ importers:
       '@payloadcms/db-mongodb':
         specifier: 3.70.0
         version: 3.70.0(payload@3.70.0(graphql@16.12.0)(typescript@5.9.3))
+      '@payloadcms/live-preview-react':
+        specifier: ^3.70.0
+        version: 3.70.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@payloadcms/next':
         specifier: 3.70.0
         version: 3.70.0(@types/react@19.2.1)(graphql@16.12.0)(monaco-editor@0.55.1)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.70.0(graphql@16.12.0)(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
@@ -1009,6 +1012,15 @@ packages:
     peerDependencies:
       graphql: ^16.8.1
       payload: 3.70.0
+
+  '@payloadcms/live-preview-react@3.70.0':
+    resolution: {integrity: sha512-4MbnnMJIfQDInNBht8QBgJ4RVhSD12JTJjnrIcvG8A70edxeOZcL6lQxVNT7nHHLfTrVJFf3cQHWb009pHzQqg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.1 || ^19.1.2 || ^19.2.1
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.1 || ^19.1.2 || ^19.2.1
+
+  '@payloadcms/live-preview@3.70.0':
+    resolution: {integrity: sha512-QKSxkja8dA/FhVWexEEBkK+qoEkdbUIr5fDlZ7FzwHfpZ3oD9i6OOcu7VWg6ZHnhmWay4KWqQcBTOvi6jaDvCw==}
 
   '@payloadcms/next@3.70.0':
     resolution: {integrity: sha512-/PivHLH3FJWKc7rQhO2JQsx7lqdR6LaCUPkUa83D6lZjZmAnhCl66u9YHoZTVAMjWtjsTXHQSZEvGFNRsmZVhw==}
@@ -4150,6 +4162,14 @@ snapshots:
       tsx: 4.20.6
     transitivePeerDependencies:
       - typescript
+
+  '@payloadcms/live-preview-react@3.70.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@payloadcms/live-preview': 3.70.0
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+
+  '@payloadcms/live-preview@3.70.0': {}
 
   '@payloadcms/next@3.70.0(@types/react@19.2.1)(graphql@16.12.0)(monaco-editor@0.55.1)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.70.0(graphql@16.12.0)(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)':
     dependencies:

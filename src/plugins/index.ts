@@ -15,7 +15,7 @@ import { searchPlugin } from '@payloadcms/plugin-search'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 
 const generateTitle: GenerateTitle<Post | Page> = async ({ doc }) => {
-	const siteSettingsData: SiteSetting = await getCachedGlobal('siteSettings', 1)()
+	const siteSettingsData: SiteSetting = await getCachedGlobal('siteSettings', 1)
 	return doc?.title
 		? `${doc.title} | ${siteSettingsData.siteTitle}`
 		: siteSettingsData.siteTitle || ''

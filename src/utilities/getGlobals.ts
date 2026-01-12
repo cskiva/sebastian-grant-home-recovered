@@ -1,32 +1,51 @@
-// export const dynamic = 'force-dynamic'
-// export const revalidate = 0
-'use server'
+import type { Config, Footer, SiteSetting } from '@/payload-types' // Adjusted import path
 
-import type { Config } from 'src/payload-types'
+import { cache } from 'react'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { unstable_cache } from 'next/cache'
 
 type Global = keyof Config['globals']
 
-async function getGlobal(slug: Global, depth = 0) {
-	if (process.env.SKIP_BUILD_DB === '1') {
-		process.stderr.write(`[build] SKIP_BUILD_DB=1 → getGlobal(${slug}) returning stub\n`)
-		return {} as any
-	}
-	const payload = await getPayload({ config: configPromise })
-	const global = await payload.findGlobal({
-		slug,
-		depth,
-	})
+// Helper to map slugs to their generated types
+type GlobalType<T extends Global> = T extends 'footer'
+	? Footer
+	: T extends 'siteSettings'
+	? SiteSetting
+	: any
 
-	return global
+async function getGlobal<T extends Global>(slug: T, depth = 0): Promise<GlobalType<T>> {
+	if (process.env.SKIP_BUILD_DB === '1') {
+		return {} as GlobalType<T>
+	}
+
+	try {
+		const payload = await getPayload({ config: configPromise })
+		const global = await payload.findGlobal({
+			slug,
+			depth,
+		})
+		return global as unknown as GlobalType<T>
+	} catch (error) {
+		console.error(`Error fetching global "${slug}":`, error)
+		return {} as GlobalType<T>
+	}
 }
 
 /**
- * Returns a unstable_cache function mapped with the cache tag for the slug
+ * Modern Next.js 16 Pattern
+ * Removed the extra execution wrapper inside cache to fix the "not callable" error.
  */
-export const getCachedGlobal = (slug: Global, depth = 0) =>
-	unstable_cache(async () => getGlobal(slug, depth), [slug], {
-		tags: [`global_${slug}`],
-	})
+export const getCachedGlobal = cache(async <T extends Global>(slug: T, depth = 0): Promise<GlobalType<T>> => {
+	// Use a unique key for the data cache
+	const fetcher = unstable_cache(
+		async () => getGlobal(slug, depth),
+		['global', slug, depth.toString()],
+		{
+			tags: [`global_${slug}`],
+		}
+	)
+
+	// Execute the cached function
+	return fetcher()
+})

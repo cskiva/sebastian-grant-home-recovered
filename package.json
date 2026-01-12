@@ -6,7 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-		"dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+		"dev": "concurrently \"./scripts/tunnel.sh\" \"payload generate:importmap && cross-env NODE_OPTIONS=--no-deprecation next dev\"",
 		"devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
 		"generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
 		"generate:types": "payload generate:types",
@@ -61,6 +61,7 @@
 		"@types/react": "19.2.1",
 		"@types/react-dom": "19.2.1",
 		"autoprefixer": "^10.4.19",
+		"concurrently": "^9.2.1",
 		"dotenv": "^16.4.5",
 		"eslint": "^9.39.2",
 		"postcss": "^8.4.38",

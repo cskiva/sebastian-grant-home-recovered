@@ -3,8 +3,10 @@ import React from "react";
 
 const Page: NextPage = () => {
   return (
-    <div className="container">
-      <h1 className="text-4xl font-bold">Sebweb is on</h1>
+    <div className="container h-full">
+      <div className="grid h-full place-items-center">
+        <h1 className="text-4xl font-bold">Sebweb is on</h1>
+      </div>
     </div>
   );
 };

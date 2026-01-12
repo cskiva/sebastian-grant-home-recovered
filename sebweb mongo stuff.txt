@@ -1,0 +1,31 @@
+docker run -d \
+  --name mongodb \
+  --restart unless-stopped \
+  -p 127.0.0.1:27017:27017 \
+  -v mongo-data:/data/db \
+  -e MONGO_INITDB_ROOT_USERNAME=sebweb \
+  -e MONGO_INITDB_ROOT_PASSWORD=237it5uBRf8Y \
+  mongo:7
+
+
+docker exec -it mongodb mongosh \
+  -u sebweb \
+  -p 237it5uBRf8Y \
+  --authenticationDatabase admin
+
+
+db.createUser({
+  user: "seb",
+  pwd: "237it5uBRf8Y",
+  roles: [
+    { role: "readWrite", db: "sebweb" }
+  ]
+})
+
+
+MONGODB_URI=mongodb://seb:237it5uBRf8Y@127.0.0.1:27017/sebweb?authSource=sebweb
+
+
+
+DATABASE_URI=mongodb://seb:237it5uBRf8Y@sebweb:27017/sebweb?authSource=sebweb
+DATABASE_URI_INTERNAL=mongodb://seb:237it5uBRf8Y@seb:27017/sebweb?authSource=sebweb

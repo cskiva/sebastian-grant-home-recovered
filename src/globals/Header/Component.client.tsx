@@ -47,11 +47,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
 
   return (
     <header
-      className={cn("container relative z-20")}
+      className={cn("container relative z-20 bg-red-100 w-full")}
       {...attrs}
       key={userData?.id}
     >
-      <div className="py-8 flex justify-between">
+      <div className="py-2 flex justify-between">
         <Link href="/">
           <Logo
             loading="eager"

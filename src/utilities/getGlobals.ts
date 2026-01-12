@@ -1,6 +1,6 @@
 // export const dynamic = 'force-dynamic'
 // export const revalidate = 0
-'use-server'
+'use server'
 
 import type { Config } from 'src/payload-types'
 import configPromise from '@payload-config'

@@ -1,0 +1,19 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+        DATABASE_URI: ${DATABASE_URI_INTERNAL}
+        SKIP_BUILD_DB: '1'
+        NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL}
+        VERCEL_PROJECT_PRODUCTION_URL: ${VERCEL_PROJECT_PRODUCTION_URL}
+    container_name: ddd-app
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    env_file:
+      - .env
+    environment:
+      DATABASE_URI: ${DATABASE_URI_INTERNAL}
+    ports:
+      - '3000:3000'

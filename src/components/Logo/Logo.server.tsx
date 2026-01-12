@@ -6,6 +6,6 @@ export default async function LogoServer({ className }: { className: string }) {
   const siteSettingsData: SiteSetting = await getCachedGlobal(
     "siteSettings",
     1
-  );
+  )();
   return <Logo siteSettingsData={siteSettingsData} className={className} />;
 }

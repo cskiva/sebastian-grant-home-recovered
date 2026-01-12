@@ -4,7 +4,7 @@ import { getCachedGlobal } from './getGlobals'
 import { getServerSideURL } from './getURL'
 
 async function getDefaultOpenGraph(): Promise<Metadata['openGraph']> {
-	const siteSettingsData: SiteSetting = await getCachedGlobal('siteSettings', 1)
+	const siteSettingsData: SiteSetting = await getCachedGlobal('siteSettings', 1)()
 	return {
 		type: 'website',
 		description: siteSettingsData.siteDescription ?? '',

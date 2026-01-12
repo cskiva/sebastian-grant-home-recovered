@@ -8,7 +8,7 @@ services:
         SKIP_BUILD_DB: '1'
         NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL}
         VERCEL_PROJECT_PRODUCTION_URL: ${VERCEL_PROJECT_PRODUCTION_URL}
-    container_name: ddd-app
+    container_name: sebweb-app
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     env_file:

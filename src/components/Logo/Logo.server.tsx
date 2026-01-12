@@ -1,11 +1,8 @@
 import { Logo } from "./Logo";
 import { SiteSetting } from "@/payload-types";
-import { getCachedGlobal } from "@/utilities/getGlobals";
+import { getGlobal } from "@/utilities/getGlobals";
 
 export default async function LogoServer({ className }: { className: string }) {
-  const siteSettingsData: SiteSetting = await getCachedGlobal(
-    "siteSettings",
-    1
-  )();
+  const siteSettingsData: SiteSetting = await getGlobal("siteSettings");
   return <Logo siteSettingsData={siteSettingsData} className={className} />;
 }

@@ -1,16 +1,13 @@
-import { getCachedGlobal } from "@/utilities/getGlobals";
-import Link from "next/link";
-import type { Footer, SiteSetting } from "@/payload-types";
 import { CMSLink } from "@/components/Link";
 import { Logo } from "@/components/Logo/Logo";
+import type { Footer, SiteSetting } from "@/payload-types";
 import { ThemeSelector } from "@/providers/Theme/ThemeSelector";
+import { getGlobal } from "@/utilities/getGlobals";
+import Link from "next/link";
 
 export async function Footer() {
-  const footerData: Footer = await getCachedGlobal("footer", 1)();
-  const siteSettingsData: SiteSetting = await getCachedGlobal(
-    "siteSettings",
-    1
-  )();
+  const footerData: Footer = await getGlobal("footer");
+  const siteSettingsData: SiteSetting = await getGlobal("siteSettings");
 
   const navItems = footerData?.navItems || [];
 

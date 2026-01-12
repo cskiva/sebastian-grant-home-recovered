@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { SiteSetting } from '@/payload-types'
-import { getCachedGlobal } from './getGlobals'
+import { getGlobal } from './getGlobals'
 import { getServerSideURL } from './getURL'
 
 async function getDefaultOpenGraph(): Promise<Metadata['openGraph']> {
-	const siteSettingsData: SiteSetting = await getCachedGlobal('siteSettings', 1)()
+	const siteSettingsData: SiteSetting = await getGlobal('siteSettings')
 	return {
 		type: 'website',
 		description: siteSettingsData.siteDescription ?? '',

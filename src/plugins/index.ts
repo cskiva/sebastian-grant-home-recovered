@@ -5,7 +5,7 @@ import { Page, Post, SiteSetting } from '@/payload-types'
 import { Plugin } from 'payload'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
-import { getCachedGlobal } from '@/utilities/getGlobals'
+import { getGlobal } from '@/utilities/getGlobals'
 import { getServerSideURL } from '@/utilities/getURL'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
@@ -15,7 +15,7 @@ import { searchPlugin } from '@payloadcms/plugin-search'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 
 const generateTitle: GenerateTitle<Post | Page> = async ({ doc }) => {
-	const siteSettingsData: SiteSetting = await getCachedGlobal('siteSettings', 1)()
+	const siteSettingsData: SiteSetting = await getGlobal('siteSettings')
 	return doc?.title
 		? `${doc.title} | ${siteSettingsData.siteTitle}`
 		: siteSettingsData.siteTitle || ''

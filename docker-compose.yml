@@ -17,7 +17,7 @@ services:
     ports:
       - '3000:3000'
     depends_on:
-      - mongo
+      - mongodb
 
   # mongo:
   #   image: mongo:8

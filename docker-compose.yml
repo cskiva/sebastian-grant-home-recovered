@@ -19,15 +19,15 @@ services:
     depends_on:
       - mongo
 
-  mongo:
-    image: mongo:8
-    container_name: mongodb
-    volumes:
-      - mongo-data:/data/db
-    # optional: expose to host for Compass etc.
-    ports:
-      - "27017:27017"
+  # mongo:
+  #   image: mongo:8
+  #   container_name: mongodb
+  #   volumes:
+  #     - mongo-data:/data/db
+  #   # optional: expose to host for Compass etc.
+  #   ports:
+  #     - "27017:27017"
 
 volumes:
   mongo-data:
-  minio-data:
+  # minio-data:

@@ -16,8 +16,8 @@ services:
       DATABASE_URL: ${DATABASE_URL}
     ports:
       - '3000:3000'
-    depends_on:
-      - mongodb
+    # depends_on:
+    #   - mongodb
 
   # mongo:
   #   image: mongo:8

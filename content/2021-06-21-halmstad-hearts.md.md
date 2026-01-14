@@ -1,0 +1,11 @@
+---
+title: Halmstad Hearts
+date: 2014-06-20T09:04:40.774Z
+cover: ../assets/images/uploads/halmstad-crop.jpg
+slug: hearts
+category: Painting
+tags:
+  - Sweden
+  - Freestyle
+---
+Hey

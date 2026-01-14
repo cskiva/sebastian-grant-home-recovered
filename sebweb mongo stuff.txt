@@ -27,5 +27,5 @@ MONGODB_URI=mongodb://seb:237it5uBRf8Y@127.0.0.1:27017/sebweb?authSource=sebweb
 
 
 
-DATABASE_URI=mongodb://seb:237it5uBRf8Y@sebweb:27017/sebweb?authSource=sebweb
-DATABASE_URI_INTERNAL=mongodb://seb:237it5uBRf8Y@seb:27017/sebweb?authSource=sebweb
+DATABASE_URL=mongodb://seb:237it5uBRf8Y@sebweb:27017/sebweb?authSource=sebweb
+DATABASE_URL_INTERNAL=mongodb://seb:237it5uBRf8Y@seb:27017/sebweb?authSource=sebweb

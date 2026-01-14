@@ -1,0 +1,13 @@
+---
+title: Elva Karto
+date: 2014-06-21T12:38:31.139Z
+cover: ../assets/images/uploads/ek-crop.jpg
+slug: elvaKarto
+category: Ink Drawing
+tags:
+  - One-Take
+  - Mind-Map
+  - CrystalFace
+  - ""
+---
+hey

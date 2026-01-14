@@ -15,9 +15,21 @@ services:
       - .env
     environment:
       DATABASE_URI: ${DATABASE_URI_INTERNAL}
+      DATABASE_URL: ${DATABASE_URL}
     ports:
       - '3000:3000'
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:8
+    container_name: mongodb
+    volumes:
+      - mongo-data:/data/db
+    # optional: expose to host for Compass etc.
+    ports:
+      - "27017:27017"
 
 volumes:
-  minio-data:
   mongo-data:
+  minio-data:

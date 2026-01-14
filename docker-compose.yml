@@ -4,7 +4,6 @@ services:
       context: .
       args:
         PAYLOAD_SECRET: ${PAYLOAD_SECRET}
-        DATABASE_URI: ${DATABASE_URI_INTERNAL}
         SKIP_BUILD_DB: '1'
         NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL}
         VERCEL_PROJECT_PRODUCTION_URL: ${VERCEL_PROJECT_PRODUCTION_URL}
@@ -14,7 +13,6 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URI: ${DATABASE_URI_INTERNAL}
       DATABASE_URL: ${DATABASE_URL}
     ports:
       - '3000:3000'

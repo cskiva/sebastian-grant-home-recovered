@@ -1,5 +1,6 @@
 "use client";
 
+import CategoryMenu from "@/components/CategoryMenu";
 import Footer from "../components/Footer/Footer";
 import Layout from "../components/Layout";
 import Link from "next/link";
@@ -79,27 +80,12 @@ export default function Listing({ pageContext, postEdges }: ListingProps) {
           >
             <List size={23} />
           </button>
-          <div
-            className={`hidden overflow-hidden bg-transparent transition-all duration-300 md:block ${
-              subMenuOpen ? "w-56 px-8" : "w-0 px-0"
-            }`}
-          >
-            <Link
-              href="/categories/oil-painting"
-              className={categoryButtonClass}
-            >
-              Oil Painting
-            </Link>
-            <Link href="/categories/drawing" className={categoryButtonClass}>
-              Drawing
-            </Link>
-            <Link
-              href="/categories/mixed-media"
-              className={categoryButtonClass}
-            >
-              Other
-            </Link>
-          </div>
+          {subMenuOpen && (
+            <div className="flex flex-col w-[200px]">
+              <CategoryMenu posts={postEdges} />
+            </div>
+          )}
+
           <div className="flex-1 px-2 sm:px-4">
             <div className="flex w-full flex-col items-center">
               <PostListing postEdges={postEdges} />

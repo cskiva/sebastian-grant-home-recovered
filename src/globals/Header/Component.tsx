@@ -9,7 +9,7 @@ import { HeaderClient } from "./Component.client";
 
 export async function Header() {
   const headerData: Header = await getGlobal("header");
-  const siteSettingsData: SiteSetting = await getGlobal("siteSettings");
+  const siteSettingsData: SiteSetting = await getGlobal("siteSettings", 1);
   const headers = await getHeadersNextJs();
   const payload = await getPayload({ config: payloadConfig });
   const { user: userData } = await payload.auth({ headers });

@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "../ui/badge";
 import { DateTime } from "luxon";
 import LazyImage from "../LazyLoad/LazyLoad";
 import Link from "next/link";

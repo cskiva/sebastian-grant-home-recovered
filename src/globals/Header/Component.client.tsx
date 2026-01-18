@@ -45,6 +45,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
 
   const attrs = mounted && headerTheme ? { "data-theme": headerTheme } : {};
 
+  if (pathname.includes("art")) return null;
   return (
     <header
       className={cn("container relative z-20 bg-red-100 w-full")}

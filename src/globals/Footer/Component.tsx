@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export async function Footer() {
   const footerData: Footer = await getGlobal("footer");
-  const siteSettingsData: SiteSetting = await getGlobal("siteSettings");
+  const siteSettingsData: SiteSetting = await getGlobal("siteSettings", 1);
 
   const navItems = footerData?.navItems || [];
 

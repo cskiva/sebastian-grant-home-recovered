@@ -23,7 +23,7 @@ export default async function RootLayout({
       </head>
       <body className="h-full flex flex-col bg-green-500">
         <Providers>
-          {/* <Header /> */}
+          <Header />
           <div className="flex-1 min-h-0 bg-blue-500">{children}</div>
           <Footer />
         </Providers>

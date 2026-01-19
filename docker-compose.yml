@@ -1,5 +1,11 @@
 services:
-  app:
+  sebweb-app:
+    depends_on:
+    - mongodb  
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
     build:
       context: .
       args:
@@ -11,9 +17,5 @@ services:
     container_name: sebweb-app
     extra_hosts:
       - 'host.docker.internal:host-gateway'
-    env_file:
-      - .env
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
     ports:
       - '3000:3000'

@@ -1,5 +1,5 @@
 services:
-  sebweb-app:
+  app:
     env_file:
       - .env
     environment:

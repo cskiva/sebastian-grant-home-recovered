@@ -28,8 +28,9 @@ jobs:
 
       - name: Verify Tailscale SSH works
         run: |
-          set -euxo pipefail
-          tailscale ssh -o StrictHostKeyChecking=no sebastian@sebweb "echo ok && hostname && whoami"
+         set -euxo pipefail
+         tailscale status
+         tailscale ssh sebastian@sebweb "echo ok && hostname && whoami"
 
       - name: Deploy over Tailscale SSH and build on server
         run: |

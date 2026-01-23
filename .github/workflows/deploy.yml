@@ -26,12 +26,10 @@ jobs:
           tailscale status
           tailscale status --json | jq '.Self.DNSName, .Self.Tags'
 
-      - name: Verify Tailscale connectivity
+      - name: Verify Tailscale SSH works
         run: |
-          set -eux
-          tailscale status
-          tailscale ping -c 3 sebweb
-          nc -vz sebweb 22
+          set -euxo pipefail
+          tailscale ssh -o StrictHostKeyChecking=no sebastian@sebweb "echo ok && hostname && whoami"
 
       - name: Deploy over Tailscale SSH and build on server
         run: |

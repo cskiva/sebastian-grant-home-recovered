@@ -39,7 +39,7 @@ jobs:
           tailscale ssh sebastian@sebweb <<'EOF'
           set -euxo pipefail
 
-          APP_PATH="$HOME/app"
+          APP_PATH="$HOME/apps/sebastian-grant-home/"
           REPO_URL="git@github.com:cskiva/sebweb2026.git"
           BRANCH="main"
 

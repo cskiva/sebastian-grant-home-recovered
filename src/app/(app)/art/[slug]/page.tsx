@@ -18,7 +18,7 @@ const buildPostMetadata = (
   const title = post.frontmatter.title || config.siteTitle;
   const description =
     post.frontmatter.description || post.excerpt || config.siteDescription;
-  const url = `${config.siteUrl}${post.fields.slug}`;
+  const url = `${config.siteUrl}/art/${post.fields.slugSegment}`;
   const cover = post.frontmatter.cover
     ? new URL(post.frontmatter.cover, config.siteUrl).toString()
     : new URL(config.siteLogo, config.siteUrl).toString();
@@ -84,7 +84,9 @@ export default async function SlugPage({ params }: PageProps) {
   const postMatch = posts.find((post) => post.fields.slugSegment === slug);
 
   if (postMatch) {
-    return <PostTemplate postNode={postMatch} slug={postMatch.fields.slug} />;
+    return (
+      <PostTemplate postNode={postMatch} slug={postMatch.fields.slugSegment} />
+    );
   }
 
   const postsPerPage = config.postsPerPage;

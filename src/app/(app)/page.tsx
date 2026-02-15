@@ -1,13 +1,14 @@
 import type { NextPage } from "next";
-import React from "react";
+import { MilestoneTimeline } from "@/components/home/MilestoneTimeline";
+import { MirrorHero } from "@/components/home/MirrorHero";
+import { milestonePayload } from "@/data/milestones";
 
 const Page: NextPage = () => {
   return (
-    <div className="container h-full">
-      <div className="grid h-full place-items-center">
-        <h1 className="text-4xl font-bold">Sebweb is being rebuilt.</h1>
-      </div>
-    </div>
+    <main className="min-h-screen bg-[#05060f]">
+      <MirrorHero />
+      <MilestoneTimeline milestones={milestonePayload.milestones} />
+    </main>
   );
 };
 

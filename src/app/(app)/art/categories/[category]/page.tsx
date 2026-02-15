@@ -31,7 +31,7 @@ function postHasCategory(post: any, categoryParam: string) {
 function buildCategoryMetadata(category: string): Metadata {
   const title = `${category} | ${config.siteTitle}`;
   const description = `Posts in category: ${category}`;
-  const url = `${config.siteUrl}/category/${encodeURIComponent(category)}`;
+  const url = `${config.siteUrl}/art/categories/${encodeURIComponent(category)}`;
   const cover = new URL(config.siteLogo, config.siteUrl).toString();
 
   return {
@@ -69,21 +69,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
   if (filtered.length === 0) notFound();
 
-  const postsPerPage = config.postsPerPage;
-  const pageCount = postsPerPage
-    ? Math.ceil(filtered.length / postsPerPage)
-    : 1;
+  const postEdges = filtered.map((node) => ({ node }));
 
-  const postEdges = (
-    postsPerPage ? filtered.slice(0, postsPerPage) : filtered
-  ).map((node) => ({ node }));
-
-  return (
-    <div>
-      <Listing
-        postEdges={postEdges}
-        pageContext={{ currentPageNum: 1, pageCount }}
-      />
-    </div>
-  );
+  return <Listing postEdges={postEdges} />;
 }

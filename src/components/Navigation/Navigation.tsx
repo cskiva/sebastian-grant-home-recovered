@@ -2,6 +2,7 @@
 
 import { Menu, X } from "lucide-react";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -51,26 +52,26 @@ export default function Navigation({
 
   return (
     <>
-      <div className="w-full bg-white">
+      <div className="w-full border-b border-neutral-200 bg-white/95 backdrop-blur">
         <div className="flex items-center justify-between px-4 sm:px-6">
           <Link href="/" className="flex items-center">
-            <img
-              src="/SVG/logo-svg.svg"
+            <Image
+              src="/logos/logo-192.png"
               alt="Sebastian Grant"
               width={42}
               height={42}
-              className="mr-2"
+              className="mr-2 rounded-full border border-neutral-300"
             />
-            <h1 className="text-black font-bold whitespace-nowrap text-[1.24em] sm:text-[1.5em]">
+            <h1 className="whitespace-nowrap text-[1.24em] font-bold text-black sm:text-[1.5em]">
               Sebastian Grant
             </h1>
           </Link>
-          <div className="hidden sm:flex flex-1 items-start justify-end">
+          <div className="hidden flex-1 items-start justify-end sm:flex">
             {navLinks()}
           </div>
           <button
             type="button"
-            className="sm:hidden p-2"
+            className="p-2 sm:hidden"
             onClick={() => setMobileMenuShow(true)}
             aria-label="Open menu"
           >
@@ -80,7 +81,7 @@ export default function Navigation({
       </div>
 
       {mobileMenuShow && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg animate-menu-reveal">
+        <div className="fixed left-0 right-0 top-0 z-50 bg-white shadow-lg">
           <div className="flex justify-end px-4 py-2">
             <button
               type="button"
@@ -97,7 +98,7 @@ export default function Navigation({
 
       {!postView && title !== false && (
         <div className="hidden sm:block px-4 sm:px-6">
-          <h3 className="animate-fade-in text-black">{title}</h3>
+          <h3 className="py-2 text-lg font-medium text-neutral-900">{title}</h3>
         </div>
       )}
     </>

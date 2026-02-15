@@ -1,13 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en-GB">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Sebastian Grant">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="author" content="Sebastian Grant" />
     <meta property="og:image" content=" " />
-    <meta http-equiv="Content-Security-Policy" content="frame-src https://sebastiangrant.com;">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="frame-src https://sebastiangrant.com;"
+    />
 
     <title></title>
 
@@ -31,54 +36,58 @@
     </script> -->
 
     <script type="text/javascript">
-        window.addEventListener('load', (event) => {
-            function GetURLParameter(sParam) {
-                var sPageURL = window.location.search.substring(1);
-                var sURLVariables = sPageURL.split('&');
-                for (var i = 0; i < sURLVariables.length; i++) {
-                    var sParameterName = sURLVariables[i].split('=');
-                    if (sParameterName[0] == sParam) {
-                        return sParameterName[1];
-                    }
-                }
+      window.addEventListener("load", (event) => {
+        function GetURLParameter(sParam) {
+          var sPageURL = window.location.search.substring(1);
+          var sURLVariables = sPageURL.split("&");
+          for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split("=");
+            if (sParameterName[0] == sParam) {
+              return sParameterName[1];
             }
+          }
+        }
 
-            var zoomify = GetURLParameter('zoomify');
-            var zoomifyUrl = "https://www.sebastiangrantcdn.com/zoomify/Images/Elkiva/" + zoomify;
-            document.title = zoomify + " - Zoom frame - Sebastian Grant";
+        var zoomify = GetURLParameter("zoomify");
+        var zoomifyUrl =
+          "https://www.sebastiangrantcdn.com/zoomify/Images/Elkiva/" + zoomify;
+        document.title = zoomify + " - Zoom frame - Sebastian Grant";
 
-            if (zoomify) {
-                Z.showImage("myZoomifyContainer", zoomifyUrl, "zSkinPath=skins/Default&zBaseZIndex=-1&zNavigatorTop=65&zNavigatorLeft=5&zInitialZoom=50&zNavigatorRectangleColor=#000000");
-            }
-        });
+        if (zoomify) {
+          Z.showImage(
+            "myZoomifyContainer",
+            zoomifyUrl,
+            "zSkinPath=skins/Default&zBaseZIndex=-1&zNavigatorTop=65&zNavigatorLeft=5&zInitialZoom=50&zNavigatorRectangleColor=#000000",
+          );
+        }
+      });
     </script>
 
     <!-- Zoomify Script -->
 
-    <script type="text/javascript" src="./zoomify/ZoomifyImageViewerPro-min.js"></script>
+    <script
+      type="text/javascript"
+      src="./zoomify/ZoomifyImageViewerPro-min.js"
+    ></script>
 
     <!-- core CSS -->
-    <link href="./zoomify/bootstrap.min.css" rel="stylesheet">
-    <link href="./zoomify/styles.css" rel="stylesheet">
+    <link href="./zoomify/bootstrap.min.css" rel="stylesheet" />
+    <link href="./zoomify/styles.css" rel="stylesheet" />
 
     <!-- Body Scroll Lock -->
 
     <script src="./zoomify/bodyScrollLock.js"></script>
+  </head>
 
-</head>
-
-<body style="margin-bottom:0">
-
+  <body style="margin-bottom: 0">
     <!-- Navbar 1 -->
 
     <!-- Content Start -->
 
     <div id="viewport">
-
-        <main role="main" style="background:#121212">
-
-            <div id="myZoomifyContainer"></div>
-            <!-- <div style="text-align:center; padding:10px;" id="yui_3_17_2_1_1625050513470_254">
+      <main role="main" style="background: #121212">
+        <div id="myZoomifyContainer"></div>
+        <!-- <div style="text-align:center; padding:10px;" id="yui_3_17_2_1_1625050513470_254">
                 <form name="myForm" id="myForm">
                     <input type="button" name="zoomOut" id="zoomOut" value="Zoom Out" onmousedown="Z.Viewport.zoom('out')" onmouseup="Z.Viewport.zoom('stop')" ontouchstart="Z.Viewport.zoom('out')" ontouchend="Z.Viewport.zoom('stop')">
                     <input type="button" name="zoomIn" id="zoomIn" value="Zoom In" onmousedown="Z.Viewport.zoom('in')" onmouseup="Z.Viewport.zoom('stop')" ontouchstart="Z.Viewport.zoom('in')" ontouchend="Z.Viewport.zoom('stop')">
@@ -90,9 +99,7 @@
                     <input type="button" name="fullView" id="fullView" value="Full View" onclick="Z.Viewport.toggleFullViewModeExternal()">
                 </form>
             </div> -->
-        </main>
-
+      </main>
     </div>
-</body>
-
+  </body>
 </html>

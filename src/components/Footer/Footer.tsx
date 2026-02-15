@@ -33,7 +33,7 @@ export default function Footer({
   if (!copyright) return null;
 
   return (
-    <footer className="relative w-full bg-black py-1 text-mediumGrey sm:bg-transparent sm:py-2">
+    <footer className="relative w-full border-t border-neutral-800 bg-black py-1 text-neutral-400 sm:py-2">
       {postNode && (
         <div
           className={`absolute left-5 -top-32 flex h-20 w-60 items-center justify-around rounded-full bg-white px-5 shadow-md transition-opacity duration-300 ${
@@ -70,9 +70,11 @@ export default function Footer({
         )}
 
         <div className="flex-1 px-4">
-          <p className="whitespace-nowrap text-[0.98em] text-lightGrey sm:text-main-cadence">
+          <p className="whitespace-nowrap text-[0.98em] text-neutral-300">
             <span className="hidden sm:inline">{copyright}</span>
-            <span className="sm:hidden">© 2022 Sebastian Grant</span>
+            <span className="sm:hidden">
+              © {new Date().getFullYear()} Sebastian Grant
+            </span>
           </p>
         </div>
 

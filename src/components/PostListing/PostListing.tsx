@@ -1,8 +1,7 @@
 "use client";
 
-import { Badge } from "../ui/badge";
 import { DateTime } from "luxon";
-import LazyImage from "../LazyLoad/LazyLoad";
+import Image from "next/image";
 import Link from "next/link";
 import type { PostEdge } from "../../lib/posts";
 
@@ -12,7 +11,7 @@ type PostListingProps = {
 
 export default function PostListing({ postEdges }: PostListingProps) {
   const postList = postEdges.map((postEdge) => ({
-    path: postEdge.node.fields.slug,
+    slugSegment: postEdge.node.fields.slugSegment,
     tags: postEdge.node.frontmatter.tags,
     cover: postEdge.node.frontmatter.cover,
     title: postEdge.node.frontmatter.title,
@@ -23,31 +22,36 @@ export default function PostListing({ postEdges }: PostListingProps) {
   }));
 
   return (
-    <div className="grid w-full grid-cols-2 gap-[2px] sm:grid-cols-3 lg:grid-cols-4 3xl:grid-cols-5">
+    <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {postList.map((post) => (
         <Link
-          href={`/art/${post.path}`}
-          key={`/art/${post.path}`}
-          className="group block"
+          href={`/art/${encodeURIComponent(post.slugSegment)}`}
+          key={post.slugSegment}
+          className="group block overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-lg"
         >
-          <div className="bg-darks-raised-r100 transition-colors duration-300 group-hover:bg-darks-raised-r200">
-            <div className="relative pb-[153%] sm:pb-[153%]">
-              <LazyImage
-                className="absolute inset-0 h-full w-full object-cover shadow-[0_3px_0_#000000] border-t border-[#808080]"
-                src={post.cover || ""}
-                alt={post.title || ""}
+          <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100">
+            {post.cover ? (
+              <Image
+                src={post.cover}
+                alt={post.title || "Artwork"}
+                fill
+                sizes="(max-width: 768px) 90vw, (max-width: 1280px) 45vw, 24vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
               />
-            </div>
-            <div className="hidden sm:block p-4 min-h-[150px] relative">
-              <h4 className="title text-[1.2rem] text-main-cadence transition-colors duration-300 group-hover:text-main-rollover">
-                {post.title}
-              </h4>
-              <p className="category text-[0.96rem] text-lightGrey">
-                {post.category}
-              </p>
-              <div className="absolute bottom-0 right-1 px-4 pb-2 text-lightGrey font-thin">
-                <h5 className="date text-[0.9rem]">{post.date?.year}</h5>
+            ) : (
+              <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-neutral-300 via-neutral-200 to-neutral-100 text-xs uppercase tracking-[0.25em] text-neutral-500">
+                Image pending
               </div>
+            )}
+          </div>
+          <div className="space-y-1 p-4">
+            <h4 className="line-clamp-1 text-base font-semibold text-neutral-900">
+              {post.title}
+            </h4>
+            <p className="line-clamp-1 text-sm text-neutral-600">{post.category}</p>
+            <div className="flex items-center justify-between pt-1 text-xs uppercase tracking-[0.12em] text-neutral-500">
+              <span>{post.date?.isValid ? post.date.year : "Undated"}</span>
+              <span>{post.tags?.length ?? 0} tags</span>
             </div>
           </div>
         </Link>

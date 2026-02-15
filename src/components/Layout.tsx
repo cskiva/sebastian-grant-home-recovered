@@ -19,9 +19,9 @@ export default function Layout({
 }: LayoutProps) {
   return (
     <div
-      className={`container-main min-h-[100svh] w-full flex flex-col ${
+      className={`container-main flex min-h-[100svh] w-full flex-col ${
         postView ? "overflow-hidden" : "overflow-x-hidden"
-      } text-lightGrey`}
+      } bg-white text-neutral-900`}
     >
       <Navigation location={location} title={title} postView={postView} />
       {children}

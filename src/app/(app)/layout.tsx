@@ -21,10 +21,10 @@ export default async function RootLayout({
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
-      <body className="h-full flex flex-col bg-green-500">
+      <body className="flex h-full flex-col bg-background text-foreground">
         <Providers>
           <Header />
-          <div className="flex-1 min-h-0 bg-blue-500">{children}</div>
+          <div className="min-h-0 flex-1">{children}</div>
           <Footer />
         </Providers>
       </body>

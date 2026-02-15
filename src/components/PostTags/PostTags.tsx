@@ -13,14 +13,14 @@ export default function PostTags({ tags }: PostTagsProps) {
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <h5 className="text-mediumGrey">
+      <h5 className="text-neutral-400">
         <HashIcon />
       </h5>
       {tags.map((tag) => (
         <Link
           key={tag}
-          href={`/tags/${_.kebabCase(tag)}`}
-          className="rounded-xl border border-lightGrey bg-black/10 px-2 py-1 text-[0.75rem] font-bold text-mediumGrey shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_1px_1px_rgba(0,0,0,0.1)]"
+          href={`/art/tags/${_.kebabCase(tag)}`}
+          className="rounded-xl border border-neutral-700 bg-neutral-900/60 px-2 py-1 text-[0.75rem] font-bold text-neutral-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_1px_1px_rgba(0,0,0,0.25)] transition-colors hover:border-neutral-500 hover:text-white"
         >
           #{tag}
         </Link>

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo (optional; deploy builds on server)
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Connect to Tailscale
@@ -20,7 +20,7 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_CLIENT_SECRET }}
           tags: tag:ci
 
-      - name: Debug Tailscale identity (runner)
+      - name: Debug Tailscale identity
         run: |
           set -eux
           tailscale status
@@ -28,9 +28,9 @@ jobs:
 
       - name: Verify Tailscale SSH works
         run: |
-         set -euxo pipefail
-         tailscale status
-         tailscale ssh sebastian@sebweb "echo ok && hostname && whoami"
+          set -euxo pipefail
+          tailscale status
+          tailscale ssh sebastian@sebweb "echo ok && hostname && whoami"
 
       - name: Deploy over Tailscale SSH and build on server
         run: |
@@ -39,8 +39,8 @@ jobs:
           tailscale ssh sebastian@sebweb <<'EOF'
           set -euxo pipefail
 
-          APP_PATH="$HOME/apps/sebastian-grant-home/"
-          REPO_URL="git@github.com:cskiva/sebweb2026.git"
+          APP_PATH="$HOME/apps/sebastian-grant-home"
+          REPO_URL="git@github.com-sebastian-grant-home-recovered:cskiva/sebastian-grant-home-recovered.git"
           BRANCH="main"
 
           mkdir -p "$APP_PATH"
@@ -51,7 +51,7 @@ jobs:
             git clone "$REPO_URL" .
           fi
 
-          git remote set-url origin "$REPO_URL" || true
+          git remote set-url origin "$REPO_URL"
           git fetch --prune origin
           git checkout -f "$BRANCH"
           git reset --hard "origin/$BRANCH"

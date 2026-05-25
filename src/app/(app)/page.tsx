@@ -1,13 +1,13 @@
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import type { NextPage } from "next";
-import { MilestoneTimeline } from "@/components/home/MilestoneTimeline";
-import { MirrorHero } from "@/components/home/MirrorHero";
-import { milestonePayload } from "@/data/milestones";
 
 const Page: NextPage = () => {
   return (
-    <main className="min-h-screen bg-[#05060f]">
-      <MirrorHero />
-      <MilestoneTimeline milestones={milestonePayload.milestones} />
+    <main className="min-h-screen grid place-items-center bg-[#05060f]">
+      <Link href="art">
+        <Button>Art</Button>
+      </Link>
     </main>
   );
 };

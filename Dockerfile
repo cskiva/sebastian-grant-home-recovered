@@ -1,7 +1,7 @@
 # -------------------------
 # Base (Node + pnpm via corepack)
 # -------------------------
-FROM node:20-alpine AS base
+FROM node:22-alpine AS base
 WORKDIR /app
 
 # -------------------------
@@ -39,7 +39,7 @@ RUN pnpm run build
 # -------------------------
 # Stage 3: Production runner
 # -------------------------
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 

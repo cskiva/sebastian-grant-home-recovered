@@ -10,7 +10,7 @@ WORKDIR /app
 FROM base AS deps
 RUN corepack enable
 
-COPY package.json pnpm-lock.yaml .npmrc ./
+COPY package.json pnpm-lock.yaml .npmrc pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
 # -------------------------

@@ -64,14 +64,11 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
   return debug ? (
     <div className="flex flex-col gap-2 text-xs">
-      <Button
-        size={"sm"}
-        className="p-0 text-xs"
-        variant={"ghost"}
-        href={`${productionUrl}${src as string}`}
-      >
-        {productionUrl}
-        {src as string}
+      <Button asChild size={"sm"} className="p-0 text-xs" variant={"ghost"}>
+        <a href={`${productionUrl}${src as string}`}>
+          {productionUrl}
+          {src as string}
+        </a>
       </Button>
       <picture className="h-8 w-8">
         <NextImage

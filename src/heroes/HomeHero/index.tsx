@@ -22,7 +22,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ links, media, richText }) => 
               {links.map(({ link }, i) => {
                 return (
                   <li key={i}>
-                    <CMSLink {...link} appearance={'hero'} />
+                    <CMSLink {...link} appearance={'default'} />
                   </li>
                 )
               })}

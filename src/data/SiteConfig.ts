@@ -54,14 +54,14 @@ const config: SiteConfig = {
 	userDescription: "Artist and Designer.",
 	userLinks: [
 		{
+			label: "Instagram",
+			url: "https://www.instagram.com/sebastiangrantart",
+			iconClassName: "fa fa-instagram",
+		},
+		{
 			label: "Facebook",
 			url: "https://www.facebook.com/sebastiangrantart",
 			iconClassName: "fa fa-facebook",
-		},
-		{
-			label: "Email",
-			url: "mailto:sebastianlgrant@gmail.com",
-			iconClassName: "fa fa-envelope",
 		},
 	],
 	copyright: "Copyright © 2021 Sebastian Grant",

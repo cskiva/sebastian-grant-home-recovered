@@ -2,7 +2,6 @@
 
 import { Info, X } from "lucide-react";
 
-
 import { DateTime } from "luxon";
 import Footer from "../components/Footer/Footer";
 import Layout from "../components/Layout";
@@ -15,6 +14,12 @@ type PostTemplateProps = {
   postNode: PostNode;
   slug: string;
 };
+
+function kebabToCamel(slug: string) {
+  return slug.replace(/-([a-z0-9])/g, function (_, char) {
+    return char.toUpperCase();
+  });
+}
 
 export default function PostTemplate({ postNode, slug }: PostTemplateProps) {
   const [infoOpen, setInfoOpen] = useState(false);
@@ -62,7 +67,7 @@ export default function PostTemplate({ postNode, slug }: PostTemplateProps) {
 
           <div className="relative flex-1">
             <iframe
-              src={`/static.html?zoomify=${slug.toLowerCase().replace(/-/g, "_")}`}
+              src={`/static.html?zoomify=${kebabToCamel(slug)}`}
               title={post.title || "Artwork"}
               className="h-full min-h-[420px] w-full border-0"
               allow="fullscreen"

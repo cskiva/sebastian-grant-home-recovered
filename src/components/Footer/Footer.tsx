@@ -36,7 +36,7 @@ export default function Footer({ config }: FooterProps) {
 
   return (
     <footer className="w-full border-t border-border bg-background py-3">
-      <div className="flex items-center justify-between px-6">
+      <div className="flex flex-col items-center gap-2 px-6 sm:flex-row sm:justify-between">
         <p className="text-xs text-muted-foreground tracking-wide">{copyright}</p>
         <div className="flex items-center gap-5">
           {instagram && (

@@ -1,7 +1,7 @@
 ---
 title: Beau
 date: 2013-03-22T01:00:00.000Z
-cover: ../assets/images/uploads/beau-crop.jpg
+cover: ../assets/images/uploads/beau_crop.jpg
 slug: beau
 category: Mixed Media
 tags:

@@ -14,12 +14,14 @@
 		"payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
 		"start": "cross-env NODE_OPTIONS=--no-deprecation next start",
 		"seed:pages": "tsx scripts/seed-pages.ts",
+		"seed:user": "tsx scripts/seed-user.ts",
 		"capture-zoomify": "tsx scripts/capture-zoomify.ts",
 		"capture-zoomify:force": "tsx scripts/capture-zoomify.ts --force",
 		"capture-zoomify:watch": "tsx scripts/capture-zoomify.ts --watch"
 	},
 	"dependencies": {
 		"@payloadcms/db-mongodb": "3.72.0",
+		"@payloadcms/email-nodemailer": "^3.72.0",
 		"@payloadcms/live-preview-react": "^3.72.0",
 		"@payloadcms/next": "3.72.0",
 		"@payloadcms/plugin-form-builder": "^3.72.0",

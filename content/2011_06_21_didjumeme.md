@@ -1,7 +1,7 @@
 ---
 title: Didjumeme
 date: 2011-06-21T09:05:25.185Z
-cover: ../assets/images/uploads/didjumeme-crop.jpg
+cover: ../assets/images/uploads/didjumeme_crop.jpg
 slug: didjumeme
 category: Oil Painting
 tags:

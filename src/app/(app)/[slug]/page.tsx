@@ -14,12 +14,11 @@ import { LivePreviewListener } from "@/components/LivePreviewListener";
 import { RenderHero } from "@/heroes/RenderHero";
 import { generateMeta } from "@/utilities/generateMeta";
 import { cn } from "@/utilities/ui";
-import PageClient from "./page.client";
 
 export async function generateStaticParams() {
   if (process.env.SKIP_BUILD_DB === "1") {
     console.error(
-      "[build] SKIP_BUILD_DB=1 → generateStaticParams() returning []"
+      "[build] SKIP_BUILD_DB=1 → generateStaticParams() returning []",
     );
     return [];
   }
@@ -70,16 +69,15 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />;
   }
 
-  const { hero, layout, theme } = page;
+  const { hero, layout } = page;
 
   return (
     <article
       className={cn(
-        "pt-12 pb-24"
+        "pt-12 pb-24",
         // process.env.NODE_ENV === 'development' && '[&>*]:border-gray-500 [&>*]:border',
       )}
     >
-      <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}

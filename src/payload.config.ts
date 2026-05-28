@@ -7,6 +7,7 @@ import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { SiteSettings } from './globals/SiteSettings/config'
 import { Users } from './collections/Users'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import { getServerSideURL } from './utilities/getURL'
@@ -20,6 +21,19 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+	email: nodemailerAdapter({
+		defaultFromAddress: process.env.SMTP_FROM || 'noreply@example.com',
+		defaultFromName: 'sebweb',
+		transportOptions: {
+			host: process.env.SMTP_HOST,
+			port: Number(process.env.SMTP_PORT) || 587,
+			auth: {
+				user: process.env.SMTP_USER,
+				pass: process.env.SMTP_PASS,
+			},
+			tls: { rejectUnauthorized: false },
+		},
+	}),
 	admin: {
 		// user: 'admins',
 		user: Users.slug,

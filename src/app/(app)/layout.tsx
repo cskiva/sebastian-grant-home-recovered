@@ -2,7 +2,6 @@ import "../globals.css";
 
 import { Footer } from "@/globals/Footer/Component";
 import { Header } from "@/globals/Header/Component";
-import { InitTheme } from "@/providers/Theme/InitTheme";
 import type { Metadata } from "next";
 import { Providers } from "@/providers";
 import React from "react";
@@ -17,7 +16,6 @@ export default async function RootLayout({
   return (
     <html className={"font-sans h-[100dvh]"} lang="en" suppressHydrationWarning>
       <head>
-        <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>

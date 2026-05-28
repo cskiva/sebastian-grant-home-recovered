@@ -18,7 +18,7 @@ export default function UserLinks({ config }: UserLinksProps) {
     <div className="flex w-full items-center justify-end gap-4 pr-3 sm:pr-8">
       {userLinks.map((link) => (
         <a href={link.url} key={link.label} aria-label={link.label}>
-          <span className="inline-flex items-center justify-center text-gray-500 hover:text-black">
+          <span className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground">
             {link.iconClassName === "fa fa-facebook" ? (
               <FacebookIcon className={iconClass} />
             ) : (

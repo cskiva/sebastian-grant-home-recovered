@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const iframeClass =
-  "w-full min-h-[calc(100vh-114px-6rem)] rounded-[20px] border border-gray-500 shadow-[0_0_5px_black]";
+  "w-full min-h-[calc(100vh-114px-6rem)] rounded-[20px] border border-border shadow-md";
 
 export default function MusicPage() {
   return (

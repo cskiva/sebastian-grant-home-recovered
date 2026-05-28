@@ -12,7 +12,11 @@
 		"generate:types": "payload generate:types",
 		"lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
 		"payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-		"start": "cross-env NODE_OPTIONS=--no-deprecation next start"
+		"start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+		"seed:pages": "tsx scripts/seed-pages.ts",
+		"capture-zoomify": "tsx scripts/capture-zoomify.ts",
+		"capture-zoomify:force": "tsx scripts/capture-zoomify.ts --force",
+		"capture-zoomify:watch": "tsx scripts/capture-zoomify.ts --watch"
 	},
 	"dependencies": {
 		"@payloadcms/db-mongodb": "3.72.0",
@@ -45,6 +49,7 @@
 		"clsx": "^2.1.1",
 		"cmdk": "^1.1.1",
 		"cross-env": "^7.0.3",
+		"framer-motion": "^12.40.0",
 		"gray-matter": "^4.0.3",
 		"lodash": "^4.17.21",
 		"lucide-react": "^0.376.0",
@@ -81,6 +86,7 @@
 		"concurrently": "^9.2.1",
 		"dotenv": "^16.4.5",
 		"eslint": "^9.39.2",
+		"playwright": "^1.50.0",
 		"postcss": "^8.4.38",
 		"tailwindcss": "^3.4.3",
 		"tsx": "^4.7.1",

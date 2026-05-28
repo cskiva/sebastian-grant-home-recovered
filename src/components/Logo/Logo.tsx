@@ -36,7 +36,7 @@ export const Logo = (props: Props) => {
         className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
         src={url as string}
       />
-      <h3 className="pl-3 text-xl font-bold whitespace-nowrap dark:text-white">
+      <h3 className="pl-3 text-xl font-bold whitespace-nowrap text-foreground">
         {siteSettingsData?.siteTitle}
       </h3>
     </div>

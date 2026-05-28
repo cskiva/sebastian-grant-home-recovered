@@ -33,5 +33,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <div className="min-h-screen bg-white text-neutral-900">{children}</div>;
+  return <div className="min-h-screen bg-background text-foreground">{children}</div>;
 }

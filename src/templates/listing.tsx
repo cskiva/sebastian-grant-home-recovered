@@ -1,6 +1,6 @@
 "use client";
 
-import { List, ListCollapse, ListEnd } from "lucide-react";
+import { List, ListEnd } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import CategoryMenu from "@/components/CategoryMenu";
@@ -37,11 +37,11 @@ export default function Listing({ pageContext, postEdges }: ListingProps) {
     if (pageCount <= 1) return null;
 
     return (
-      <div className="mt-8 flex min-h-[88px] w-full items-center justify-center gap-2 border-t border-neutral-200 bg-white px-4 py-4 sm:min-h-[110px]">
+      <div className="mt-8 flex min-h-[88px] w-full items-center justify-center gap-2 border-t border-border bg-background px-4 py-4 sm:min-h-[110px]">
         {!isFirstPage && (
           <Link
             href={prevPage}
-            className="rounded-full border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-100"
+            className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
           >
             PREV
           </Link>
@@ -55,8 +55,8 @@ export default function Listing({ pageContext, postEdges }: ListingProps) {
               href={buildArtPageHref(pageNum)}
               className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                 isActive
-                  ? "border-neutral-900 bg-neutral-900 text-white"
-                  : "border-neutral-300 text-neutral-700 hover:bg-neutral-100"
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border text-foreground hover:bg-muted"
               }`}
             >
               {pageNum}
@@ -66,7 +66,7 @@ export default function Listing({ pageContext, postEdges }: ListingProps) {
         {!isLastPage && (
           <Link
             href={nextPage}
-            className="rounded-full border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-100"
+            className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
           >
             NEXT
           </Link>
@@ -80,7 +80,7 @@ export default function Listing({ pageContext, postEdges }: ListingProps) {
       <div className="flex">
         <Button
           type="button"
-          className="hidden grid place-items-center rounded-full border border-neutral-300 text-black transition-colors hover:bg-neutral-200 md:mx-4 md:mt-2 md:flex"
+          className="hidden items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-muted md:mx-4 md:mt-2 md:flex"
           onClick={() => setSubMenuOpen((prev) => !prev)}
           aria-label="Toggle categories"
           variant={"ghost"}
@@ -92,7 +92,7 @@ export default function Listing({ pageContext, postEdges }: ListingProps) {
             <CategoryMenu posts={postEdges} />
           </div>
         )}
-        <div className="flex flex-1 flex-col bg-neutral-50 pt-4">
+        <div className="flex flex-1 flex-col bg-muted pt-4">
           <div className="flex w-full flex-col md:flex-row">
             <div className="flex-1 px-4 pb-8">
               {hasPosts ? (
@@ -100,7 +100,7 @@ export default function Listing({ pageContext, postEdges }: ListingProps) {
                   <PostListing postEdges={postEdges} />
                 </div>
               ) : (
-                <div className="mt-10 rounded-2xl border border-dashed border-neutral-300 bg-white p-8 text-center text-neutral-600">
+                <div className="mt-10 rounded-2xl border border-dashed border-border bg-background p-8 text-center text-muted-foreground">
                   No artworks were found.
                 </div>
               )}

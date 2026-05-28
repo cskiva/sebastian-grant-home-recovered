@@ -21,7 +21,7 @@ export default function Layout({
     <div
       className={`container-main flex min-h-[100svh] w-full flex-col ${
         postView ? "overflow-hidden" : "overflow-x-hidden"
-      } bg-white text-neutral-900`}
+      } bg-background text-foreground`}
     >
       <Navigation location={location} title={title} postView={postView} />
       {children}

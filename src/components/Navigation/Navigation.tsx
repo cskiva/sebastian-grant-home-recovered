@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -26,33 +27,36 @@ export default function Navigation({
   postView,
 }: NavigationProps) {
   const [mobileMenuShow, setMobileMenuShow] = useState(false);
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
 
-  const navButtonClass = (isActive: boolean) =>
-    [
-      "uppercase font-bold text-[0.9em] px-4 py-3 flex-1 text-center transition-colors",
-      isActive
-        ? "border-b-4 border-black pt-4"
-        : "border-b-4 border-transparent",
-      "hover:text-[#051629]",
-    ].join(" ");
+  const indicatorKey = hoveredKey ?? location;
 
   const navLinks = (stacked = false) =>
     navItems.map((item) => (
       <Link
         key={item.key}
         href={item.href}
-        className={`${navButtonClass(location === item.key)} ${
+        className={`relative uppercase font-bold text-[0.9em] px-4 py-3 flex-1 text-center transition-colors hover:text-foreground ${
           stacked ? "text-left" : ""
         }`}
+        onMouseEnter={() => !stacked && setHoveredKey(item.key)}
+        onMouseLeave={() => !stacked && setHoveredKey(null)}
         onClick={() => stacked && setMobileMenuShow(false)}
       >
         {item.label}
+        {!stacked && indicatorKey === item.key && (
+          <motion.div
+            layoutId="nav-indicator"
+            className="absolute bottom-0 left-0 right-0 h-[3px] bg-foreground"
+            transition={{ type: "spring", stiffness: 500, damping: 35 }}
+          />
+        )}
       </Link>
     ));
 
   return (
     <>
-      <div className="w-full border-b border-neutral-200 bg-white/95 backdrop-blur">
+      <div className="w-full border-b border-border bg-background/95 backdrop-blur">
         <div className="flex items-center justify-between px-4 sm:px-6">
           <Link href="/" className="flex items-center">
             <Image
@@ -60,9 +64,9 @@ export default function Navigation({
               alt="Sebastian Grant"
               width={42}
               height={42}
-              className="mr-2 rounded-full border border-neutral-300"
+              className="mr-2 rounded-full border border-border"
             />
-            <h1 className="whitespace-nowrap text-[1.24em] font-bold text-black sm:text-[1.5em]">
+            <h1 className="whitespace-nowrap text-[1.24em] font-bold text-foreground sm:text-[1.5em]">
               Sebastian Grant
             </h1>
           </Link>
@@ -81,7 +85,7 @@ export default function Navigation({
       </div>
 
       {mobileMenuShow && (
-        <div className="fixed left-0 right-0 top-0 z-50 bg-white shadow-lg">
+        <div className="fixed left-0 right-0 top-0 z-50 bg-background shadow-lg">
           <div className="flex justify-end px-4 py-2">
             <button
               type="button"
@@ -98,7 +102,7 @@ export default function Navigation({
 
       {!postView && title !== false && (
         <div className="hidden sm:block px-4 sm:px-6">
-          <h3 className="py-2 text-lg font-medium text-neutral-900">{title}</h3>
+          <h3 className="py-2 text-lg font-medium text-foreground">{title}</h3>
         </div>
       )}
     </>

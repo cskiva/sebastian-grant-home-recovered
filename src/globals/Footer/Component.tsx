@@ -13,7 +13,7 @@ export async function Footer() {
 
   if (siteSettingsData)
     return (
-      <footer className="mt-auto border-t border-border bg-black dark:bg-card text-white">
+      <footer className="mt-auto border-t border-border bg-background text-foreground">
         <div className="container py-2 gap-2 flex flex-col md:flex-row md:justify-between">
           <Link className="flex items-center" href="/">
             <Logo siteSettingsData={siteSettingsData} />
@@ -23,7 +23,7 @@ export async function Footer() {
             <ThemeSelector />
             <nav className="flex flex-col md:flex-row gap-4">
               {navItems.map(({ link }, i) => {
-                return <CMSLink className="text-white" key={i} {...link} />;
+                return <CMSLink className="text-foreground" key={i} {...link} />;
               })}
             </nav>
           </div>

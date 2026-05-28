@@ -3,6 +3,15 @@ import { revalidatePath, revalidateTag } from 'next/cache'
 
 import type { Page } from '../../../payload-types'
 
+const tryRevalidate = (path: string) => {
+	try {
+		revalidatePath(path)
+		revalidateTag('pages-sitemap')
+	} catch {
+		// no-op outside a Next.js request context (e.g. seed scripts)
+	}
+}
+
 export const revalidatePage: CollectionAfterChangeHook<Page> = ({
 	doc,
 	previousDoc,
@@ -14,8 +23,7 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
 
 			payload.logger.info(`Revalidating page at path: ${path}`)
 
-			revalidatePath(path)
-			revalidateTag('pages-sitemap')
+			tryRevalidate(path)
 		}
 
 		// If the page was previously published, we need to revalidate the old path
@@ -24,8 +32,7 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
 
 			payload.logger.info(`Revalidating old page at path: ${oldPath}`)
 
-			revalidatePath(oldPath)
-			revalidateTag('pages-sitemap')
+			tryRevalidate(oldPath)
 		}
 	}
 	return doc
@@ -34,8 +41,7 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
 export const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { context } }) => {
 	if (!context.disableRevalidate) {
 		const path = doc?.slug === 'home' ? '/' : `/${doc?.slug}`
-		revalidatePath(path)
-		revalidateTag('pages-sitemap')
+		tryRevalidate(path)
 	}
 
 	return doc

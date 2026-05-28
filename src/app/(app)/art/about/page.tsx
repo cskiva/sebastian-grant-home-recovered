@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <Layout location="about" title="About">
-      <div className="min-h-[calc(100vh-104px)] bg-white">
+      <div className="min-h-[calc(100vh-104px)] bg-background">
         <About />
       </div>
     </Layout>

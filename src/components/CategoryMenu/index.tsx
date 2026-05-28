@@ -6,7 +6,6 @@ interface CategoryMenuProps {
   posts: PostEdge[];
 }
 
-// simple slugify helper
 const slugify = (value: string) =>
   value
     .toLowerCase()
@@ -39,10 +38,10 @@ export default function CategoryMenu({ posts }: CategoryMenuProps) {
           <Link
             key={slug}
             href={`/art/categories/${encodeURIComponent(slug)}`}
-            className="inline-flex items-center justify-between rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-100 md:w-full"
+            className="inline-flex items-center justify-between rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted md:w-full"
           >
             <span>{category}</span>
-            <span className="ml-2 rounded-full bg-neutral-900 px-2 py-0.5 text-xs text-white">
+            <span className="ml-2 rounded-full bg-foreground px-2 py-0.5 text-xs text-background">
               {count}
             </span>
           </Link>

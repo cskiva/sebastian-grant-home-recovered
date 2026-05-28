@@ -6,6 +6,9 @@ import _ from "lodash";
 import config from "@/data/SiteConfig";
 import moment from "moment";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type PageProps = {
   params: Promise<{
     tag: string;
@@ -15,7 +18,8 @@ type PageProps = {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { tag: tagSlug } = await params;
+  const { tag: encodedTagSlug } = await params;
+  const tagSlug = decodeURIComponent(encodedTagSlug);
 
   const tagMap = await getAllTags();
   const tag = tagMap.get(tagSlug) || _.startCase(tagSlug);
@@ -27,7 +31,8 @@ export async function generateMetadata({
 }
 
 export default async function TagPage({ params }: PageProps) {
-  const { tag: tagSlug } = await params;
+  const { tag: encodedTagSlug } = await params;
+  const tagSlug = decodeURIComponent(encodedTagSlug);
 
   const posts = await getAllPosts();
   const tagMap = await getAllTags();

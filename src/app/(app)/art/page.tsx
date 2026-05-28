@@ -4,6 +4,9 @@ import Landing from "@/templates/landing";
 import Listing from "@/templates/listing";
 import config from "../../../data/SiteConfig";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function HomePage() {
   const postsPerPage = config.postsPerPage;
 

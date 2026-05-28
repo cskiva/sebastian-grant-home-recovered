@@ -16,11 +16,23 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import path from 'path'
 import { plugins } from './plugins'
 import { s3Storage } from '@payloadcms/storage-s3'
+import { createRequire } from 'module'
+import type { SharpDependency } from 'payload'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const require = createRequire(import.meta.url)
+
+let sharp: SharpDependency | undefined
+
+try {
+	sharp = require('sharp')
+} catch {
+	sharp = undefined
+}
 
 export default buildConfig({
+	...(sharp ? { sharp } : {}),
 	email: nodemailerAdapter({
 		defaultFromAddress: process.env.SMTP_FROM || 'noreply@example.com',
 		defaultFromName: 'sebweb',

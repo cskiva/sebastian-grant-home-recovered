@@ -41,7 +41,10 @@ export const Posts: CollectionConfig<'posts'> = {
   defaultPopulate: {
     title: true,
     slug: true,
+    heroImage: true,
     categories: true,
+    tags: true,
+    publishedAt: true,
     meta: {
       image: true,
       description: true,
@@ -160,6 +163,29 @@ export const Posts: CollectionConfig<'posts'> = {
           ],
         },
       ],
+    },
+    {
+      name: 'tags',
+      type: 'array',
+      admin: {
+        position: 'sidebar',
+      },
+      fields: [
+        {
+          name: 'tag',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'zoomifySlug',
+      type: 'text',
+      admin: {
+        description:
+          'Optional override for Zoomify. Leave blank to derive it from the public slug.',
+        position: 'sidebar',
+      },
     },
     {
       name: 'publishedAt',

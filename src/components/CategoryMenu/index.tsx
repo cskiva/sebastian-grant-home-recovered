@@ -1,4 +1,4 @@
-import { PostEdge } from "@/lib/posts";
+import type { PostEdge } from "@/lib/posts";
 import Link from "next/link";
 import React from "react";
 

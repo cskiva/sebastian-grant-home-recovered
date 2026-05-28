@@ -3,6 +3,9 @@ import { ArtGridPreview } from "@/components/ArtGridPreview";
 import Link from "next/link";
 import type { NextPage } from "next";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const Page: NextPage = async () => {
   const posts = await getPostsSortedByDateDesc();
   const images = posts

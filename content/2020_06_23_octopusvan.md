@@ -7,4 +7,4 @@ category: Acrylic Painting
 tags:
   - Van
 ---
-hey
+Acrylic painting on a van — an octopus reaching across the panels.

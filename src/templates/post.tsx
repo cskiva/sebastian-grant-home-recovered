@@ -2,7 +2,7 @@
 
 import { Info, X } from "lucide-react";
 
-import { camelCase } from "lodash";
+
 import { DateTime } from "luxon";
 import Footer from "../components/Footer/Footer";
 import Layout from "../components/Layout";
@@ -62,7 +62,7 @@ export default function PostTemplate({ postNode, slug }: PostTemplateProps) {
 
           <div className="relative flex-1">
             <iframe
-              src={`/static.html?zoomify=${camelCase(slug)}`}
+              src={`/static.html?zoomify=${slug.toLowerCase().replace(/-/g, "_")}`}
               title={post.title || "Artwork"}
               className="h-full min-h-[420px] w-full border-0"
               allow="fullscreen"

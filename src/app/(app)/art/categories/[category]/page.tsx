@@ -4,6 +4,9 @@ import config from "@/data/SiteConfig";
 import { getAllPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type PageProps = {
   params: Promise<{
     category: string;

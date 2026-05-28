@@ -8,4 +8,4 @@ tags:
   - MixedMedia
   - ""
 ---
-hey
+Mixed media work combining three ox motifs into a trinity composition.

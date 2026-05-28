@@ -258,6 +258,16 @@ export interface Post {
     image?: (string | null) | Media;
     description?: string | null;
   };
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional override for Zoomify. Leave blank to derive it from the public slug.
+   */
+  zoomifySlug?: string | null;
   publishedAt?: string | null;
   authors?: (string | User)[] | null;
   populatedAuthors?:
@@ -1138,6 +1148,13 @@ export interface PostsSelect<T extends boolean = true> {
         image?: T;
         description?: T;
       };
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  zoomifySlug?: T;
   publishedAt?: T;
   authors?: T;
   populatedAuthors?:

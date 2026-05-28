@@ -8,4 +8,4 @@ tags:
   - Bathroom
   - Mural
 ---
-Murbah
+Acrylic mural painted in a bathroom in Murwillumbah. Wild thyme from memory.

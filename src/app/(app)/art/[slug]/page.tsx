@@ -6,6 +6,9 @@ import PostTemplate from "@/templates/post";
 import config from "../../../../data/SiteConfig";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type PageProps = {
   params: Promise<{
     slug: string;
@@ -43,28 +46,14 @@ const buildPostMetadata = (
 };
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
-  const postSlugSet = new Set(posts.map((post) => post.fields.slugSegment));
-  const postPaths = Array.from(postSlugSet).map((slug) => ({ slug }));
-
-  const postsPerPage = config.postsPerPage;
-  const pageCount = postsPerPage ? Math.ceil(posts.length / postsPerPage) : 0;
-  const pagePaths =
-    postsPerPage && pageCount > 1
-      ? Array.from({ length: pageCount - 1 }, (_val, index) => {
-          const pageSlug = String(index + 2);
-          if (postSlugSet.has(pageSlug)) return null;
-          return { slug: pageSlug };
-        }).filter((value): value is { slug: string } => Boolean(value))
-      : [];
-
-  return [...postPaths, ...pagePaths];
+  return [];
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug: encodedSlug } = await params;
+  const slug = decodeURIComponent(encodedSlug);
 
   const posts = await getAllPosts();
   const postMatch = posts.find((post) => post.fields.slugSegment === slug);
@@ -78,7 +67,8 @@ export async function generateMetadata({
 }
 
 export default async function SlugPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug: encodedSlug } = await params;
+  const slug = decodeURIComponent(encodedSlug);
 
   const posts = await getAllPosts();
   const postMatch = posts.find((post) => post.fields.slugSegment === slug);

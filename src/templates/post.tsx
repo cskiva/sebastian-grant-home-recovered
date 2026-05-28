@@ -2,9 +2,9 @@
 
 import { Info, X } from "lucide-react";
 
+import { camelCase } from "lodash";
 import { DateTime } from "luxon";
 import Footer from "../components/Footer/Footer";
-import Image from "next/image";
 import Layout from "../components/Layout";
 import type { PostNode } from "../lib/posts";
 import PostTags from "../components/PostTags/PostTags";
@@ -61,17 +61,12 @@ export default function PostTemplate({ postNode, slug }: PostTemplateProps) {
           </aside>
 
           <div className="relative flex-1">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
-            <div className="relative h-full min-h-[420px]">
-              <Image
-                src={`/art-previews/${slug}.webp`}
-                alt={post.title || "Artwork"}
-                fill
-                sizes="(max-width: 1024px) 100vw, 70vw"
-                className="object-contain p-4 sm:p-8 lg:p-10"
-                priority
-              />
-            </div>
+            <iframe
+              src={`/static.html?zoomify=${camelCase(slug)}`}
+              title={post.title || "Artwork"}
+              className="h-full min-h-[420px] w-full border-0"
+              allow="fullscreen"
+            />
             <div className="absolute bottom-5 left-1/2 w-[90%] -translate-x-1/2 rounded-full bg-black/40 px-4 py-2 text-center text-xs uppercase tracking-[0.18em] text-muted-foreground backdrop-blur-sm lg:hidden">
               Tap info for details
             </div>
